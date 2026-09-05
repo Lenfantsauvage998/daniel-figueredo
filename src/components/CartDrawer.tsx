@@ -9,7 +9,7 @@ import Link from "next/link";
 export function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, total, clearCart } =
     useCart();
-  const { t } = useI18n();
+  const { lang, t } = useI18n();
 
   return (
     <AnimatePresence>
@@ -20,39 +20,39 @@ export function CartDrawer() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-ink/40 backdrop-blur-sm z-50"
           />
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed right-0 top-0 h-full w-full max-w-md bg-[#0f0f0f] border-l border-white/10 z-50 flex flex-col"
+            className="fixed right-0 top-0 h-full w-full max-w-md bg-sand border-l border-sand-edge z-50 flex flex-col"
           >
-            <div className="flex items-center justify-between p-6 border-b border-white/10">
+            <div className="flex items-center justify-between p-6 border-b border-sand-edge">
               <div className="flex items-center gap-3">
-                <ShoppingBag className="w-5 h-5 text-white/70" />
-                <h2 className="text-sm font-medium tracking-wide uppercase text-white/90">
+                <ShoppingBag className="w-5 h-5 text-ink" />
+                <h2 className="text-lg font-extrabold tracking-tight text-ink">
                   {t.cartTitle}
                 </h2>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 hover:bg-white/5 rounded-md transition-colors"
+                className="w-10 h-10 grid place-items-center rounded-full hover:bg-sand-deep transition-colors"
                 aria-label="Close"
               >
-                <X className="w-4 h-4 text-white/50" />
+                <X className="w-5 h-5 text-ink-soft" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div className="flex-1 overflow-y-auto p-6 space-y-3">
               {items.length === 0 ? (
-                <div className="text-center py-12">
-                  <ShoppingBag className="w-10 h-10 text-white/20 mx-auto mb-4" />
-                  <p className="text-white/40 text-sm">{t.storeEmpty}</p>
+                <div className="text-center py-16">
+                  <ShoppingBag className="w-10 h-10 text-ink-faint mx-auto mb-4" />
+                  <p className="text-ink-soft font-medium">{t.storeEmpty}</p>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="mt-4 text-xs text-white/30 hover:text-white/60 transition-colors"
+                    className="mt-5 px-6 py-3 text-sm font-bold rounded-full bg-sand-deep text-ink hover:bg-sand-edge transition-colors"
                   >
                     {t.cartContinue}
                   </button>
@@ -61,46 +61,46 @@ export function CartDrawer() {
                 items.map((item) => (
                   <div
                     key={item.productId}
-                    className="flex gap-4 p-3 rounded-lg border border-white/5 bg-white/[0.02]"
+                    className="flex gap-4 p-4 rounded-2xl border border-sand-edge bg-sand-lift"
                   >
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-sm text-white/90 truncate">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-white/40 mt-1">
+                      <h3 className="font-bold text-ink truncate">{item.title}</h3>
+                      <p className="text-sm text-ink-soft mt-0.5">
                         ${item.price.toFixed(2)}
                       </p>
-                      <div className="flex items-center gap-2 mt-3">
+                      <div className="flex items-center gap-1 mt-3">
                         <button
                           onClick={() =>
                             updateQuantity(item.productId, item.quantity - 1)
                           }
-                          className="p-1 hover:bg-white/10 rounded transition-colors"
+                          className="w-9 h-9 grid place-items-center rounded-full bg-sand-deep hover:bg-sand-edge transition-colors"
+                          aria-label="Decrease quantity"
                         >
-                          <Minus className="w-3 h-3 text-white/60" />
+                          <Minus className="w-4 h-4 text-ink" />
                         </button>
-                        <span className="text-xs text-white/70 w-6 text-center">
+                        <span className="text-sm font-bold text-ink w-8 text-center tabular-nums">
                           {item.quantity}
                         </span>
                         <button
                           onClick={() =>
                             updateQuantity(item.productId, item.quantity + 1)
                           }
-                          className="p-1 hover:bg-white/10 rounded transition-colors"
+                          className="w-9 h-9 grid place-items-center rounded-full bg-sand-deep hover:bg-sand-edge transition-colors"
+                          aria-label="Increase quantity"
                         >
-                          <Plus className="w-3 h-3 text-white/60" />
+                          <Plus className="w-4 h-4 text-ink" />
                         </button>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm text-white/90">
+                      <p className="font-bold text-ink">
                         ${(item.price * item.quantity).toFixed(2)}
                       </p>
                       <button
                         onClick={() => removeItem(item.productId)}
-                        className="text-xs text-white/30 hover:text-white/60 mt-2 transition-colors"
+                        className="text-sm text-ink-faint hover:text-ink mt-2 transition-colors"
                       >
-                        Remove
+                        {lang === "en" ? "Remove" : "Quitar"}
                       </button>
                     </div>
                   </div>
@@ -109,21 +109,23 @@ export function CartDrawer() {
             </div>
 
             {items.length > 0 && (
-              <div className="p-6 border-t border-white/10 space-y-4">
-                <div className="flex justify-between text-sm">
-                  <span className="text-white/50">{t.cartSubtotal}</span>
-                  <span className="text-white/90">${total.toFixed(2)}</span>
+              <div className="p-6 border-t border-sand-edge space-y-4">
+                <div className="flex justify-between items-baseline">
+                  <span className="text-ink-soft font-medium">{t.cartSubtotal}</span>
+                  <span className="text-2xl font-extrabold text-ink tabular-nums">
+                    ${total.toFixed(2)}
+                  </span>
                 </div>
                 <Link
                   href="/checkout"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full py-3 text-center text-xs font-medium uppercase tracking-wider bg-white text-black hover:bg-white/90 transition-colors rounded-sm"
+                  className="block w-full py-4 text-center text-sm font-extrabold uppercase tracking-wider bg-signal text-white hover:bg-signal-deep transition-colors rounded-full"
                 >
                   {t.cartCheckout}
                 </Link>
                 <button
                   onClick={clearCart}
-                  className="block w-full text-center text-xs text-white/30 hover:text-white/60 transition-colors"
+                  className="block w-full text-center text-sm text-ink-faint hover:text-ink transition-colors"
                 >
                   {t.cartClear}
                 </button>

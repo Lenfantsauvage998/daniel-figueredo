@@ -13,7 +13,7 @@ export function WhatsAppButton() {
       href={`https://wa.me/${phoneNumber}?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-40 flex items-center justify-center w-12 h-12 rounded-full bg-[#1a1a1a] border border-white/10 text-white/70 hover:text-white hover:border-white/20 hover:bg-[#222] transition-all shadow-lg"
+      className="fixed bottom-6 right-6 z-40 flex items-center justify-center w-14 h-14 rounded-full bg-ink text-sand hover:bg-signal transition-colors shadow-[0_6px_20px_rgba(30,35,29,0.28)]"
       aria-label="WhatsApp"
     >
       <MessageCircle className="w-5 h-5" />

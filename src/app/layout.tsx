@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CartProvider } from "@/components/CartProvider";
-import { ParticleNetwork } from "@/components/ParticleNetwork";
 import { I18nProvider } from "@/components/I18nProvider";
 
-const inter = Inter({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-bricolage",
   display: "swap",
 });
 
@@ -21,9 +20,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Daniel Figueredo — Engineer, AI Specialist & Creative Developer",
+  title: "Daniel Figueredo — Data Scientist & Analytics",
   description:
-    "Portfolio and services of Daniel Figueredo. Web development, AI agents, workflow automation, and data science solutions for modern businesses.",
+    "Portfolio of Daniel Figueredo. SQL, Python, statistics and Bayesian modeling applied to fraud detection and business decisions, plus agentic AI tooling and full-stack web development.",
 };
 
 export default function RootLayout({
@@ -32,10 +31,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${bricolage.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="min-h-screen antialiased relative">
         <I18nProvider>
-          <ParticleNetwork />
           <CartProvider>
             <div className="relative z-10">
               <Navbar />

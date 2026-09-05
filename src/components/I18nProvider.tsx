@@ -13,23 +13,54 @@ const translations = {
     navLogin: "Log in",
     navLogout: "Log out",
     navCart: "Cart",
+    navContact: "Contact",
     
     // Hero
     heroGreeting: "Hola",
-    heroHook1: "I build AI agents that cut operational costs by 70%",
-    heroHook2: "I automate workflows that reclaim 20+ hours every week",
-    heroHook3: "I design websites that convert visitors into high-ticket buyers",
-    heroHook4: "I turn scattered data into dashboards that drive decisions",
-    heroCtaPrimary: "Claim Your Free AI Audit",
-    heroCtaSecondary: "View Services",
-    
+    heroHook1: "I query, clean and model data — then explain what it means",
+    heroHook2: "I caught 80% of fraud that raw accuracy missed entirely",
+    heroHook3: "I use statistics and Pandas to find the signal in the noise",
+    heroHook4: "I also build with Claude Code, Cursor and agentic AI tools",
+    heroCtaPrimary: "Get in touch",
+    heroCtaSecondary: "See my work",
+    heroRole: "Data Scientist & Analytics",
+    heroScroll: "Scroll to meet me",
+    sceneGreeting: "Hey!",
+
+    // About / hologram
+    aboutLabel: "About",
+    aboutName: "Daniel",
+    aboutRole: "Data Scientist & Analytics",
+    aboutLocation: "Colombia",
+    aboutBio:
+      "Turns raw data into decisions using SQL, statistics and Pandas — with agentic AI tools and web development to back it up.",
+    aboutSkillsLabel: "Skills",
+    aboutHint: "Keep scrolling to bring the profile online",
+
     // Info
     infoLabel: "Info:",
     infoText:
-      "I'm Daniel Figueredo, an engineer, AI specialist and creative developer. I build from strategy to stack — web applications, intelligent agents, workflow automation and data-driven solutions. I advise early-stage companies and professionals on leveraging AI and modern web technologies to grow their business.",
+      "I'm Daniel Figueredo, a data scientist focused on analytics — SQL, Pandas, Matplotlib and statistics, applied to real business problems like fraud detection and decision-making, not just modeling for its own sake. I also build with agentic AI tools like Claude Code, Codex and Cursor, and I ship the full-stack platforms that put that work in front of real users.",
     
     // Labs / Services
     labsLabel: "Services:",
+
+    // Projects
+    projectsLabel: "Projects",
+    projectsTitle: "Data science, in practice",
+    projectsSubtitle:
+      "Analysis built to hold up under scrutiny — not just look good in a slide.",
+    projectsCta: "View the analysis",
+    projectsStatAuc: "Model AUC",
+    projectsStatSensitivity: "Fraud caught",
+    projectsStatTx: "Transactions analyzed",
+    projectsStatFraud: "Actual fraud rate",
+
+    // Clients
+    clientsLabel: "Clients",
+    clientsTitle: "Businesses that trust me",
+    clientsSubtitle: "Live platforms, built end to end and shipped to production.",
+    clientsCta: "Visit site",
     
     // Store CTA
     storeLabel: "Store:",
@@ -138,23 +169,54 @@ const translations = {
     navLogin: "Iniciar sesión",
     navLogout: "Cerrar sesión",
     navCart: "Carrito",
+    navContact: "Contacto",
     
     // Hero
     heroGreeting: "Hola",
-    heroHook1: "Construyo agentes de IA que reducen costos operativos un 70%",
-    heroHook2: "Automatizo flujos de trabajo que recuperan 20+ horas semanales",
-    heroHook3: "Diseño sitios web que convierten visitantes en compradores premium",
-    heroHook4: "Transformo datos dispersos en dashboards que impulsan decisiones",
-    heroCtaPrimary: "Solicita tu Auditoría IA Gratis",
-    heroCtaSecondary: "Ver Servicios",
-    
+    heroHook1: "Extraigo, limpio y modelo datos — y explico qué significan",
+    heroHook2: "Detecté el 80% del fraude que la precisión bruta pasó por alto",
+    heroHook3: "Uso estadística y Pandas para encontrar la señal en el ruido",
+    heroHook4: "También construyo con Claude Code, Cursor y herramientas de IA agentiva",
+    heroCtaPrimary: "Hablemos",
+    heroCtaSecondary: "Ve mi trabajo",
+    heroRole: "Científico de Datos y Analítica",
+    heroScroll: "Baja para conocerme",
+    sceneGreeting: "¡Hola!",
+
+    // About / hologram
+    aboutLabel: "Sobre mí",
+    aboutName: "Daniel",
+    aboutRole: "Científico de Datos y Analítica",
+    aboutLocation: "Colombia",
+    aboutBio:
+      "Convierto datos crudos en decisiones usando SQL, estadística y Pandas — con herramientas de IA agentiva y desarrollo web como respaldo.",
+    aboutSkillsLabel: "Habilidades",
+    aboutHint: "Sigue bajando para activar el perfil",
+
     // Info
     infoLabel: "Info:",
     infoText:
-      "Soy Daniel Figueredo, ingeniero, especialista en IA y desarrollador creativo. Construyo desde la estrategia hasta el código — aplicaciones web, agentes inteligentes, automatización de flujos y soluciones basadas en datos. Asesoro a empresas y profesionales para que aprovechen la IA y las tecnologías web modernas para hacer crecer su negocio.",
+      "Soy Daniel Figueredo, científico de datos enfocado en analítica — SQL, Pandas, Matplotlib y estadística, aplicados a problemas reales de negocio como detección de fraude y toma de decisiones, no solo modelado por modelar. También construyo con herramientas de IA agentiva como Claude Code, Codex y Cursor, y lanzo las plataformas full-stack que ponen ese trabajo frente a usuarios reales.",
     
     // Labs / Services
     labsLabel: "Servicios:",
+
+    // Projects
+    projectsLabel: "Proyectos",
+    projectsTitle: "Ciencia de datos, en la práctica",
+    projectsSubtitle:
+      "Análisis construidos para resistir el escrutinio, no solo para verse bien en una diapositiva.",
+    projectsCta: "Ver el análisis",
+    projectsStatAuc: "AUC del modelo",
+    projectsStatSensitivity: "Fraude detectado",
+    projectsStatTx: "Transacciones analizadas",
+    projectsStatFraud: "Tasa real de fraude",
+
+    // Clients
+    clientsLabel: "Clientes",
+    clientsTitle: "Negocios que confían en mí",
+    clientsSubtitle: "Plataformas en vivo, construidas de principio a fin y en producción.",
+    clientsCta: "Visitar sitio",
     
     // Store CTA
     storeLabel: "Tienda:",

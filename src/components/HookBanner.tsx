@@ -3,20 +3,19 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, Zap, TrendingUp, Clock, BarChart3 } from "lucide-react";
+import { ArrowRight, TrendingUp, Clock, Zap, BarChart3 } from "lucide-react";
 import { useI18n } from "./I18nProvider";
 import { TypewriterEffect } from "./TypewriterEffect";
+import { HeroFigure } from "./HeroFigure";
 
 function AnimatedCounter({
   end,
-  duration = 2,
+  duration = 1.6,
   suffix = "",
-  prefix = "",
 }: {
   end: number;
   duration?: number;
   suffix?: string;
-  prefix?: string;
 }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -25,18 +24,19 @@ function AnimatedCounter({
   useEffect(() => {
     if (!isInView) return;
     let startTime: number;
-    const animate = (timestamp: number) => {
+    let raf = 0;
+    const step = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
       setCount(Math.floor(progress * end));
-      if (progress < 1) requestAnimationFrame(animate);
+      if (progress < 1) raf = requestAnimationFrame(step);
     };
-    requestAnimationFrame(animate);
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
   }, [isInView, end, duration]);
 
   return (
-    <span ref={ref}>
-      {prefix}
+    <span ref={ref} className="tabular-nums">
       {count}
       {suffix}
     </span>
@@ -44,143 +44,97 @@ function AnimatedCounter({
 }
 
 const stats = [
-  {
-    icon: TrendingUp,
-    value: 70,
-    suffix: "%",
-    labelEn: "Avg. Cost Reduction",
-    labelEs: "Reducción de Costos",
-  },
-  {
-    icon: Clock,
-    value: 20,
-    suffix: "+ hrs",
-    labelEn: "Weekly Hours Reclaimed",
-    labelEs: "Horas Semanales",
-  },
-  {
-    icon: Zap,
-    value: 3,
-    suffix: "x",
-    labelEn: "Faster Delivery",
-    labelEs: "Entrega más Rápida",
-  },
-  {
-    icon: BarChart3,
-    value: 45,
-    suffix: "%",
-    labelEn: "Higher Conversion",
-    labelEs: "Conversión Mayor",
-  },
+  { icon: TrendingUp, value: 70, suffix: "%", en: "Average cost cut", es: "Costos reducidos" },
+  { icon: Clock, value: 20, suffix: "+ hrs", en: "Reclaimed each week", es: "Horas recuperadas" },
+  { icon: Zap, value: 3, suffix: "x", en: "Faster delivery", es: "Entrega más rápida" },
+  { icon: BarChart3, value: 45, suffix: "%", en: "Higher conversion", es: "Más conversión" },
 ];
 
 export function HookBanner() {
-  const { lang, setLang, t } = useI18n();
+  const { lang, t } = useI18n();
   const phrases = [t.heroHook1, t.heroHook2, t.heroHook3, t.heroHook4];
 
   const scrollToContact = () => {
-    const el = document.getElementById("contact-section");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
-      {/* Ambient radial glow behind hook */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/[0.03] rounded-full blur-[120px] pointer-events-none" />
+    <>
+      <section className="relative px-6 pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-center gap-10 lg:gap-6">
+          {/* Name block — the type is the design here */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.6, 0, 0.25, 1] }}
+            className="relative z-10"
+          >
+            <h1 className="text-[13vw] sm:text-[9vw] lg:text-[5.6vw] leading-[0.92] font-extrabold tracking-[-0.03em] text-ink">
+              Daniel
+              <br />
+              Figueredo
+            </h1>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 text-center max-w-3xl mx-auto"
-      >
-        {/* Language Toggle */}
-        <div className="flex items-center justify-center gap-2 mb-10">
-          <button
-            onClick={() => setLang("en")}
-            className={`px-3 py-1.5 text-[11px] font-medium uppercase tracking-wider border rounded-sm transition-all ${
-              lang === "en"
-                ? "border-white/30 text-white bg-white/5"
-                : "border-white/10 text-white/30 hover:text-white/50"
-            }`}
+            <span className="inline-block mt-4 -rotate-2 bg-deep text-beam-text font-mono text-sm sm:text-base font-bold tracking-[0.14em] uppercase px-4 py-2 rounded-md">
+              {t.heroRole}
+            </span>
+
+            <div className="mt-8 min-h-[3.5rem] max-w-[46ch]">
+              <TypewriterEffect phrases={phrases} />
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <button
+                onClick={scrollToContact}
+                className="group inline-flex items-center gap-2 px-7 py-4 text-sm font-extrabold uppercase tracking-wider rounded-full bg-signal text-white hover:bg-signal-deep transition-colors shadow-[0_6px_20px_rgba(217,46,94,0.28)]"
+              >
+                {t.heroCtaPrimary}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <Link
+                href="/store"
+                className="inline-flex items-center px-7 py-4 text-sm font-extrabold uppercase tracking-wider rounded-full bg-sand-deep text-ink border border-sand-edge hover:bg-sand-edge transition-colors"
+              >
+                {t.heroCtaSecondary}
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Scene */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.6, 0, 0.25, 1] }}
           >
-            EN
-          </button>
-          <button
-            onClick={() => setLang("es")}
-            className={`px-3 py-1.5 text-[11px] font-medium uppercase tracking-wider border rounded-sm transition-all ${
-              lang === "es"
-                ? "border-white/30 text-white bg-white/5"
-                : "border-white/10 text-white/30 hover:text-white/50"
-            }`}
-          >
-            ES
-          </button>
+            <HeroFigure />
+          </motion.div>
         </div>
+      </section>
 
-        {/* Main headline */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white/90 mb-6 tracking-tight">
-          {t.heroGreeting}
-        </h1>
-
-        {/* Typewriter hook */}
-        <div className="h-12 flex items-center justify-center mb-10">
-          <TypewriterEffect phrases={phrases} />
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <button
-            onClick={scrollToContact}
-            className="group flex items-center gap-2 px-7 py-3.5 text-xs font-medium uppercase tracking-wider bg-white text-black hover:bg-white/90 transition-all rounded-sm"
-          >
-            {t.heroCtaPrimary}
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-          </button>
-          <Link
-            href="/store"
-            className="px-7 py-3.5 text-xs font-medium uppercase tracking-wider border border-white/10 text-white/60 hover:text-white hover:border-white/20 hover:bg-white/5 transition-all rounded-sm"
-          >
-            {t.heroCtaSecondary}
-          </Link>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 rounded-sm overflow-hidden border border-white/5">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.labelEn}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
-              className="bg-[#0a0a0a] p-5 md:p-6"
+      {/* Results band */}
+      <section className="px-6 pb-20">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {stats.map((stat) => (
+            <div
+              key={stat.en}
+              className="rounded-3xl bg-sand-lift border border-sand-edge p-6 sm:p-7"
             >
-              <stat.icon className="w-4 h-4 text-white/20 mb-3 mx-auto md:mx-0" />
-              <div className="text-2xl md:text-3xl font-light text-white/90 mb-1">
-                <AnimatedCounter
-                  end={stat.value}
-                  suffix={stat.suffix}
-                />
+              <stat.icon className="w-5 h-5 text-signal mb-4" strokeWidth={2.2} />
+              <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-ink">
+                <AnimatedCounter end={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-[10px] md:text-[11px] uppercase tracking-wider text-white/30">
-                {lang === "en" ? stat.labelEn : stat.labelEs}
-              </div>
-            </motion.div>
+              <p className="mt-1.5 text-sm font-medium text-ink-soft">
+                {lang === "en" ? stat.en : stat.es}
+              </p>
+            </div>
           ))}
         </div>
-
-        {/* Social proof microcopy */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="mt-8 text-[11px] text-white/20 tracking-wide"
-        >
+        <p className="max-w-7xl mx-auto mt-5 text-sm text-ink-faint">
           {lang === "en"
-            ? "Trusted by founders across LATAM, US and Europe"
-            : "Confiado por fundadores de LATAM, US y Europa"}
-        </motion.p>
-      </motion.div>
-    </section>
+            ? "Working with founders across LATAM, the US and Europe."
+            : "Trabajando con fundadores de LATAM, EE.UU. y Europa."}
+        </p>
+      </section>
+    </>
   );
 }

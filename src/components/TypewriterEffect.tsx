@@ -66,13 +66,13 @@ export function TypewriterEffect({
 
   return (
     <span className="inline-flex items-center">
-      <span className="text-sm md:text-base text-white/50 font-light">
+      <span className="text-base md:text-lg text-ink-soft font-medium">
         {currentText}
       </span>
       <motion.span
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-        className="inline-block w-[2px] h-[1.1em] bg-white/40 ml-0.5 align-middle"
+        className="inline-block w-[2px] h-[1.1em] bg-signal ml-1 align-middle"
       />
     </span>
   );
