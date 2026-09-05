@@ -139,11 +139,12 @@ function ProductsTab() {
 
   const fetchProducts = () => {
     fetch("/api/products")
-      .then((r) => r.json())
+      .then((r) => (r.ok ? r.json() : []))
       .then((data) => {
-        setProducts(data);
+        setProducts(Array.isArray(data) ? data : []);
         setLoading(false);
-      });
+      })
+      .catch(() => setLoading(false));
   };
 
   useEffect(() => {
@@ -450,9 +451,9 @@ function OrdersTab() {
 
   useEffect(() => {
     fetch("/api/orders")
-      .then((r) => r.json())
+      .then((r) => (r.ok ? r.json() : []))
       .then((data) => {
-        setOrders(data);
+        setOrders(Array.isArray(data) ? data : []);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -545,9 +546,9 @@ function LeadsTab() {
 
   useEffect(() => {
     fetch("/api/leads")
-      .then((r) => r.json())
+      .then((r) => (r.ok ? r.json() : []))
       .then((data) => {
-        setLeads(data);
+        setLeads(Array.isArray(data) ? data : []);
         setLoading(false);
       })
       .catch(() => setLoading(false));

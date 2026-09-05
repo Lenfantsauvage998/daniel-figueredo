@@ -15,9 +15,9 @@ export default function StorePage() {
 
   useEffect(() => {
     fetch("/api/products")
-      .then((r) => r.json())
+      .then((r) => (r.ok ? r.json() : []))
       .then((data) => {
-        setProducts(data);
+        setProducts(Array.isArray(data) ? data : []);
         setLoading(false);
       })
       .catch(() => setLoading(false));
