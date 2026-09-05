@@ -3,16 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ShoppingBag, Menu, X, Shield, Box } from "lucide-react";
-import { useCart } from "./CartProvider";
-import { CartDrawer } from "./CartDrawer";
+import { Menu, X, Shield, Box } from "lucide-react";
 import { useI18n } from "./I18nProvider";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   const pathname = usePathname();
   const { lang, setLang, t } = useI18n();
-  const { count, setIsOpen } = useCart();
   const [user, setUser] = useState<{ name?: string | null; role?: string } | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -126,19 +123,6 @@ export function Navbar() {
             </button>
 
             <button
-              onClick={() => setIsOpen(true)}
-              className="relative w-11 h-11 grid place-items-center rounded-full bg-sand-deep/80 backdrop-blur-md border border-sand-edge/60 text-ink hover:bg-sand-edge transition-colors"
-              aria-label={t.navCart}
-            >
-              <ShoppingBag className="w-4.5 h-4.5" strokeWidth={2} />
-              {count > 0 && (
-                <span className="absolute -top-1 -right-1 min-w-5 h-5 px-1 flex items-center justify-center text-[11px] font-bold bg-signal text-white rounded-full">
-                  {count}
-                </span>
-              )}
-            </button>
-
-            <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="md:hidden w-11 h-11 grid place-items-center rounded-full bg-sand-deep/80 backdrop-blur-md border border-sand-edge/60 text-ink"
               aria-label="Menu"
@@ -237,8 +221,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <CartDrawer />
     </>
   );
 }

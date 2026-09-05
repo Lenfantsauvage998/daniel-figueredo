@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { CartProvider } from "@/components/CartProvider";
 import { I18nProvider } from "@/components/I18nProvider";
 
 const bricolage = Bricolage_Grotesque({
@@ -38,14 +37,12 @@ export default function RootLayout({
     >
       <body className="min-h-screen antialiased relative">
         <I18nProvider>
-          <CartProvider>
-            <div className="relative z-10">
-              <Navbar />
-              <main>{children}</main>
-              <Footer />
-              <WhatsAppButton />
-            </div>
-          </CartProvider>
+          <div className="relative z-10">
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <WhatsAppButton />
+          </div>
         </I18nProvider>
       </body>
     </html>
