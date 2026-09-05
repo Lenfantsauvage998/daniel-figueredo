@@ -9,7 +9,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   const links = [
-    { href: "/store", label: t.footerStore, external: false },
+    { href: "/#projects-section", label: t.footerProjects, external: false },
     { href: "mailto:hello@danielfigueredo.com", label: t.footerEmail, external: true },
     { href: "https://linkedin.com", label: t.footerLinkedIn, external: true },
     { href: "https://github.com", label: t.footerGithub, external: true },

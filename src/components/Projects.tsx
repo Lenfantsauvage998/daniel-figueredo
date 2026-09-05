@@ -19,7 +19,7 @@ export function Projects() {
   const { lang, t } = useI18n();
 
   return (
-    <section className="px-6 py-20 lg:py-28">
+    <section id="projects-section" className="px-6 py-20 lg:py-28 scroll-mt-28">
       <div className="max-w-7xl mx-auto">
         <span className="text-sm font-bold uppercase tracking-wider text-signal">
           {t.projectsLabel}

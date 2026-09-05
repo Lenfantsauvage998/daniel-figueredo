@@ -54,7 +54,7 @@ export default function HomePage() {
             {services.map((s) => (
               <Link
                 key={s.en}
-                href="/store"
+                href="/#contact-section"
                 className="group flex items-center gap-4 rounded-3xl bg-sand-lift border border-sand-edge p-6 hover:bg-white hover:border-signal/40 transition-colors"
               >
                 <span className="w-12 h-12 shrink-0 grid place-items-center rounded-2xl bg-sand-deep text-ink group-hover:bg-signal group-hover:text-white transition-colors">
@@ -72,27 +72,6 @@ export default function HomePage() {
 
       <Projects />
       <Clients />
-
-      {/* Store */}
-      <section className="px-6 pb-20 lg:pb-28">
-        <div className="max-w-7xl mx-auto rounded-[2.5rem] bg-ink text-sand px-8 sm:px-12 py-14 sm:py-16">
-          <div className="max-w-[52ch]">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              {lang === "en" ? "Ready-made packages" : "Paquetes listos"}
-            </h2>
-            <p className="mt-4 text-base sm:text-lg leading-relaxed text-sand/70">
-              {t.storeText}
-            </p>
-            <Link
-              href="/store"
-              className="group inline-flex items-center gap-2 mt-8 px-7 py-4 text-sm font-extrabold uppercase tracking-wider rounded-full bg-signal text-white hover:bg-signal-deep transition-colors"
-            >
-              {t.storeButton}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Contact */}
       <section id="contact-section" className="px-6 pb-24 lg:pb-32 scroll-mt-28">

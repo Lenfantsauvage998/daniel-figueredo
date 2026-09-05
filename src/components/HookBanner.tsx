@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import Link from "next/link";
 import { ArrowRight, TrendingUp, Clock, Zap, BarChart3 } from "lucide-react";
 import { useI18n } from "./I18nProvider";
 import { TypewriterEffect } from "./TypewriterEffect";
@@ -57,6 +56,9 @@ export function HookBanner() {
   const scrollToContact = () => {
     document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" });
   };
+  const scrollToProjects = () => {
+    document.getElementById("projects-section")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
@@ -91,12 +93,12 @@ export function HookBanner() {
                 {t.heroCtaPrimary}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-              <Link
-                href="/store"
+              <button
+                onClick={scrollToProjects}
                 className="inline-flex items-center px-7 py-4 text-sm font-extrabold uppercase tracking-wider rounded-full bg-sand-deep text-ink border border-sand-edge hover:bg-sand-edge transition-colors"
               >
                 {t.heroCtaSecondary}
-              </Link>
+              </button>
             </div>
           </motion.div>
 

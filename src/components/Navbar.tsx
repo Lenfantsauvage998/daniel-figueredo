@@ -26,20 +26,19 @@ export function Navbar() {
     window.location.href = "/";
   };
 
-  const links = [
-    { href: "/", label: t.navHome },
-    { href: "/store", label: t.navStore },
-  ];
+  const links = [{ href: "/", label: t.navHome }];
 
-  const scrollToContact = () => {
+  const scrollTo = (id: string) => {
     setMobileOpen(false);
-    const el = document.getElementById("contact-section");
+    const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.location.href = "/#contact-section";
+      window.location.href = `/#${id}`;
     }
   };
+  const scrollToProjects = () => scrollTo("projects-section");
+  const scrollToContact = () => scrollTo("contact-section");
 
   return (
     <>
@@ -72,6 +71,12 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
+            <button
+              onClick={scrollToProjects}
+              className="px-5 py-2.5 text-[13px] font-bold uppercase tracking-wider rounded-full text-ink-soft hover:text-ink hover:bg-sand-edge/50 transition-colors"
+            >
+              {t.navProjects}
+            </button>
             <button
               onClick={scrollToContact}
               className="px-5 py-2.5 text-[13px] font-bold uppercase tracking-wider rounded-full text-ink-soft hover:text-ink hover:bg-sand-edge/50 transition-colors"
@@ -158,6 +163,12 @@ export function Navbar() {
                   {l.label}
                 </Link>
               ))}
+              <button
+                onClick={scrollToProjects}
+                className="block w-full text-left px-4 py-3.5 text-base font-bold rounded-2xl text-ink hover:bg-sand-deep transition-colors"
+              >
+                {t.navProjects}
+              </button>
               <button
                 onClick={scrollToContact}
                 className="block w-full text-left px-4 py-3.5 text-base font-bold rounded-2xl text-ink hover:bg-sand-deep transition-colors"

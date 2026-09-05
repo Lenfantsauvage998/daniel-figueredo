@@ -8,7 +8,7 @@ const translations = {
   en: {
     // Nav
     navHome: "Home",
-    navStore: "Store",
+    navProjects: "Projects",
     navAdmin: "Admin",
     navLogin: "Log in",
     navLogout: "Log out",
@@ -40,9 +40,6 @@ const translations = {
     infoLabel: "Info:",
     infoText:
       "I'm Daniel Figueredo, a data scientist focused on analytics — SQL, Pandas, Matplotlib and statistics, applied to real business problems like fraud detection and decision-making, not just modeling for its own sake. I also build with agentic AI tools like Claude Code, Codex and Cursor, and I ship the full-stack platforms that put that work in front of real users.",
-    
-    // Labs / Services
-    labsLabel: "Services:",
 
     // Projects
     projectsLabel: "Projects",
@@ -60,13 +57,7 @@ const translations = {
     clientsTitle: "Businesses that trust me",
     clientsSubtitle: "Live platforms, built end to end and shipped to production.",
     clientsCta: "Visit site",
-    
-    // Store CTA
-    storeLabel: "Store:",
-    storeText:
-      "I offer tailored digital services for businesses ready to scale. Browse packages or reach out directly for a custom quote.",
-    storeButton: "View Services",
-    
+
     // Contact
     contactLabel: "Contact:",
     contactText: "Have a project in mind? Let's talk.",
@@ -83,12 +74,7 @@ const translations = {
     contactSubmit: "Send Message",
     contactSuccess: "Message sent! I'll be in touch soon.",
     contactError: "Something went wrong. Please try again.",
-    
-    // Store page
-    storeTitle: "Store",
-    storeDesc:
-      "Tailored digital services for businesses ready to scale. Each package is customizable — contact me for a custom quote.",
-    storeEmpty: "No services available right now — check back soon.",
+
     // Auth
     loginTitle: "Log in",
     loginSubtitle: "Access your account and orders",
@@ -108,7 +94,7 @@ const translations = {
     registerLogin: "Log in",
     
     // Footer
-    footerStore: "Store",
+    footerProjects: "Projects",
     footerEmail: "Email",
     footerLinkedIn: "LinkedIn",
     footerGithub: "Github",
@@ -141,7 +127,7 @@ const translations = {
   es: {
     // Nav
     navHome: "Inicio",
-    navStore: "Tienda",
+    navProjects: "Proyectos",
     navAdmin: "Admin",
     navLogin: "Iniciar sesión",
     navLogout: "Cerrar sesión",
@@ -173,9 +159,6 @@ const translations = {
     infoLabel: "Info:",
     infoText:
       "Soy Daniel Figueredo, científico de datos enfocado en analítica — SQL, Pandas, Matplotlib y estadística, aplicados a problemas reales de negocio como detección de fraude y toma de decisiones, no solo modelado por modelar. También construyo con herramientas de IA agentiva como Claude Code, Codex y Cursor, y lanzo las plataformas full-stack que ponen ese trabajo frente a usuarios reales.",
-    
-    // Labs / Services
-    labsLabel: "Servicios:",
 
     // Projects
     projectsLabel: "Proyectos",
@@ -193,13 +176,7 @@ const translations = {
     clientsTitle: "Negocios que confían en mí",
     clientsSubtitle: "Plataformas en vivo, construidas de principio a fin y en producción.",
     clientsCta: "Visitar sitio",
-    
-    // Store CTA
-    storeLabel: "Tienda:",
-    storeText:
-      "Ofrezco servicios digitales personalizados para negocios listos para escalar. Explora los paquetes o contáctame directamente para una cotización a medida.",
-    storeButton: "Ver Servicios",
-    
+
     // Contact
     contactLabel: "Contacto:",
     contactText: "¿Tienes un proyecto en mente? Hablemos.",
@@ -216,12 +193,7 @@ const translations = {
     contactSubmit: "Enviar Mensaje",
     contactSuccess: "¡Mensaje enviado! Me pondré en contacto pronto.",
     contactError: "Algo salió mal. Por favor intenta de nuevo.",
-    
-    // Store page
-    storeTitle: "Tienda",
-    storeDesc:
-      "Servicios digitales personalizados para negocios listos para escalar. Cada paquete es personalizable — contáctame para una cotización a medida.",
-    storeEmpty: "No hay servicios disponibles por ahora — vuelve pronto.",
+
     // Auth
     loginTitle: "Iniciar sesión",
     loginSubtitle: "Accede a tu cuenta y pedidos",
@@ -241,7 +213,7 @@ const translations = {
     registerLogin: "Iniciar sesión",
     
     // Footer
-    footerStore: "Tienda",
+    footerProjects: "Proyectos",
     footerEmail: "Correo",
     footerLinkedIn: "LinkedIn",
     footerGithub: "Github",
