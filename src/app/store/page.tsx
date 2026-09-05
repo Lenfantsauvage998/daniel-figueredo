@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { ShoppingCart, Loader2 } from "lucide-react";
-import { useCart } from "@/components/CartProvider";
+import { MessageCircle, Loader2 } from "lucide-react";
 import { useI18n } from "@/components/I18nProvider";
 import type { Product } from "@/types";
 
@@ -11,7 +11,6 @@ export default function StorePage() {
   const { t } = useI18n();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const { addItem } = useCart();
 
   useEffect(() => {
     fetch("/api/products")
@@ -70,35 +69,22 @@ export default function StorePage() {
                   </div>
                 )}
                 <div className="p-6 flex flex-col flex-1">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-ink-faint">
-                      {product.category}
-                    </span>
-                    <span className="text-lg font-extrabold text-ink tabular-nums">
-                      ${product.price.toFixed(0)}
-                    </span>
-                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-ink-faint mb-2">
+                    {product.category}
+                  </span>
                   <h3 className="text-xl font-extrabold text-ink mb-2">
                     {product.title}
                   </h3>
                   <p className="text-[15px] leading-relaxed text-ink-soft mb-5 flex-1">
                     {product.description}
                   </p>
-                  <button
-                    onClick={() =>
-                      addItem({
-                        productId: product.id,
-                        title: product.title,
-                        price: product.price,
-                        quantity: 1,
-                        imageUrl: product.imageUrl || undefined,
-                      })
-                    }
+                  <Link
+                    href="/#contact-section"
                     className="w-full flex items-center justify-center gap-2 py-3 text-sm font-extrabold uppercase tracking-wider rounded-full bg-ink text-sand hover:bg-signal transition-colors"
                   >
-                    <ShoppingCart className="w-4 h-4" />
-                    {t.storeAddToCart}
-                  </button>
+                    <MessageCircle className="w-4 h-4" />
+                    {t.heroCtaPrimary}
+                  </Link>
                 </div>
               </motion.div>
             ))}
