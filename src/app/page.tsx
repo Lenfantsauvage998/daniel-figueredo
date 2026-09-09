@@ -110,18 +110,25 @@ function ContactForm() {
     const formData = new FormData(form);
     setStatus("sending");
 
+    const email = formData.get("email") as string;
+    const name = formData.get("name") as string;
+    const message = formData.get("message") as string;
+    const service = formData.get("service") as string;
+
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.get("email"),
-          name: formData.get("name"),
-          message: formData.get("message"),
-          service: formData.get("service"),
-        }),
+        body: JSON.stringify({ email, name, message, service }),
       });
       if (!res.ok) throw new Error("Request failed");
+
+      const subject = `New inquiry from ${name || email}${service ? ` — ${service}` : ""}`;
+      const body = `From: ${name || "(no name)"} <${email}>\nService: ${service || "(not specified)"}\n\n${message || ""}`;
+      window.location.href = `mailto:lefantsauvage998@gmail.com?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+
       form.reset();
       setStatus("sent");
     } catch {
