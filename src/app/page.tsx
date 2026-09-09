@@ -84,10 +84,10 @@ export default function HomePage() {
               {t.contactText}
             </p>
             <a
-              href="mailto:hello@danielfigueredo.com"
+              href="mailto:lefantsauvage998@gmail.com"
               className="inline-block mt-6 text-lg font-bold text-ink underline decoration-signal decoration-2 underline-offset-4 hover:text-signal transition-colors"
             >
-              hello@danielfigueredo.com
+              lefantsauvage998@gmail.com
             </a>
           </div>
 

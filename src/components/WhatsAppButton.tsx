@@ -5,7 +5,7 @@ import { useI18n } from "./I18nProvider";
 
 export function WhatsAppButton() {
   const { t } = useI18n();
-  const phoneNumber = "+1234567890"; // TODO: Replace with your actual WhatsApp number
+  const phoneNumber = "+573237876374";
   const message = encodeURIComponent(t.whatsappText);
 
   return (

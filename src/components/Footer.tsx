@@ -10,9 +10,9 @@ export function Footer() {
 
   const links = [
     { href: "/#projects-section", label: t.footerProjects, external: false },
-    { href: "mailto:hello@danielfigueredo.com", label: t.footerEmail, external: true },
-    { href: "https://linkedin.com", label: t.footerLinkedIn, external: true },
-    { href: "https://github.com", label: t.footerGithub, external: true },
+    { href: "mailto:lefantsauvage998@gmail.com", label: t.footerEmail, external: true },
+    { href: "https://www.linkedin.com/in/daniel-enrique-figueredo-gutierrez-016439275/", label: t.footerLinkedIn, external: true },
+    { href: "https://github.com/Lenfantsauvage998", label: t.footerGithub, external: true },
   ];
 
   return (
